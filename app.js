@@ -1,4 +1,5 @@
 var express = require('express');
+var http = require('http');
 var path = require('path');
 var favicon = require('static-favicon');
 var logger = require('morgan');
@@ -7,8 +8,17 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://heroku_b3lqkcv7:6eaoonij9buugagrkasu1qu7sr@ds019708.mlab.com:19708/heroku_b3lqkcv7');
+var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mikesflapper';
 
+
+
+mongoose.connect(uristring, function (err, res) {
+if (err) {
+   console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+} else {
+  console.log ('Succeeded connected to: ' + uristring);
+}
+});
 
 require('./models/Posts');
 require('./models/Comments');
