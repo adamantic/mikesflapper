@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-mongoose.connect('mongodb://localhost/news');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://<dbuser>:<dbpassword>@ds019708.mlab.com:19708/heroku_b3lqkcv7');
+
 
 require('./models/Posts');
 require('./models/Comments');
