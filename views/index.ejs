@@ -23,10 +23,11 @@
          <div class='row'>
             <div class='col-md-6 col-offset-3' style='margin-left:50px'>
                 <ui-view></ui-view>
+                {{scope.test}}
             </div>
         </div>
 
-        <!-- template for login page -->
+        <!-- template for register page -->
 
         <script type='text/ng-template' id='/register.html'>
           <div class='page-header'>
@@ -133,6 +134,8 @@
                   </div>
               </form>
           </script>
+
+          <!-- template for posts -->
           <script type="text/ng-template" id="/posts.html">
             <div class="page-header">
               <h3>
@@ -142,37 +145,33 @@
                 <span ng-hide="post.link">
                   {{post.title}}
                 </span>
-                Not sure about this:
-                <a href="#/posts/{{post._id}}">Comments</a>
               </h3>
             </div>
 
             <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
               <span class="glyphicon glyphicon-thumbs-up"
                 ng-click="incrementUpvotes(comment)"></span>
-              {{comment.upvotes}} - by {{comment.author}}
+              {{comment.upvotes}} - by <a>{{comment.author}}</a>
               <span style="font-size:20px; margin-left:10px;">
                 {{comment.body}}
               </span>
             </div>
-            
             <form ng-submit="addComment()"
-              style="margin-top:30px;" ng-show='isLoggedIn'>
+              style="margin-top:30px;" ng-show="isLoggedIn()">
               <h3>Add a new comment</h3>
-              <div ng-hide="isLoggedIn()">
-                <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
-              </div>
+
               <div class="form-group">
                 <input type="text"
                 class="form-control"
                 placeholder="Comment"
-                ng-model="body"/>
+                ng-model="body"></input>
               </div>
               <button type="submit" class="btn btn-primary">Post</button>
             </form>
-          </script>
-        
 
-            
+            <div ng-hide="isLoggedIn()">
+              <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can comment.</h3>
+            </div>
+          </script> 
     </body>
 </html>

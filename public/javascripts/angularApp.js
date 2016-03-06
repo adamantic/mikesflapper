@@ -129,18 +129,10 @@ function($http, auth) {
   };
   
   o.upvote = function(post) {
-    return $http.put('/posts/' + post._id + '/upvote', null, {
+    return $http.put('/posts/' + post._id + '/upvote', {
       headers: {Authorization: 'Bearer '+auth.getToken()}
     }).success(function(data){
       post.upvotes += 1;
-    });
-  };
-  //downvotes
-  o.downvote = function(post) {
-    return $http.put('/posts/' + post._id + '/downvote', null, {
-      headers: {Authorization: 'Bearer '+auth.getToken()}
-    }).success(function(data){
-      post.upvotes -= 1;
     });
   };
   //grab a single post from the server
@@ -161,7 +153,7 @@ function($http, auth) {
   };
   
   o.upvoteComment = function(post, comment) {
-    return $http.put('/posts/' + post._id + '/comments/'+ comment._id + '/upvote', null, {
+    return $http.put('/posts/' + post._id + '/comments/'+ comment._id + '/upvote', {
       headers: {Authorization: 'Bearer '+auth.getToken()}
     }).success(function(data){
       comment.upvotes += 1;
@@ -187,7 +179,7 @@ function($scope, posts, auth) {
   $scope.isLoggedIn = auth.isLoggedIn;
   //setting title to blank here to prevent empty posts
   $scope.title = '';
-
+  $scope.test='hello world';
   $scope.addPost = function() {
     if ($scope.title === '') {
       return;
@@ -201,15 +193,12 @@ function($scope, posts, auth) {
     $scope.link = '';
   };
 
-  $scope.upvote = function(post) {
+  $scope.incrementUpvotes = function(post) {
     //our post factory has an upvote() function in it
     //we're just calling this using the post we have
-    console.log('Upvoting:' + post.title + "votes before:" + post.upvotes);
     posts.upvote(post);
   };
-  $scope.downvote = function(post) {
-    posts.downvote(post);
-  };
+
 }]);
 
 app.controller('PostsCtrl', ['$scope', 'posts', 'post', 'auth',
@@ -229,14 +218,9 @@ function($scope, posts, post, auth) {
     });
     $scope.body = '';
   };
-  $scope.upvote = function(comment) {
+  $scope.incrementUpvotes = function(comment) {
     posts.upvoteComment(post, comment);
   };
-
-  $scope.downvote = function(comment) {
-    posts.downvoteComment(post, comment);
-  };
-
 }]);
 
 app.controller('AuthCtrl', ['$scope', '$state', 'auth',

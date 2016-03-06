@@ -1,3 +1,4 @@
+
 var mongoose = require('mongoose');
 
 var CommentSchema = new mongoose.Schema({
@@ -9,11 +10,6 @@ var CommentSchema = new mongoose.Schema({
 
 CommentSchema.methods.upvote = function(cb) {
   this.upvotes += 1;
-  this.save(cb);
-};
-
-CommentSchema.methods.downvote = function(cb) {
-  this.upvotes -= 1;
   this.save(cb);
 };
 
