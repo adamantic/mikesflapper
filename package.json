@@ -22,5 +22,20 @@
   },
   "engines": {
     "node": "4.1.1"
-  }
+  },
+  "description": "mikesflapper",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamantic/mikesflapper.git"
+  },
+  "keywords": [
+    "mikesflapper"
+  ],
+  "author": "Michael Frazis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamantic/mikesflapper/issues"
+  },
+  "homepage": "https://github.com/adamantic/mikesflapper#readme"
 }
