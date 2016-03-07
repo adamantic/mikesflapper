@@ -1,5 +1,5 @@
 
-angular.module('austwits', ['ui.router'])
+angular.module('mikesflapper', ['ui.router'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
