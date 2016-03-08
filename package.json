@@ -8,7 +8,6 @@
     "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "postinstall": "bash ./post_install.sh"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -18,7 +17,6 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "express-jwt": "^3.3.0",
-    "grunt": "^0.4.5",
     "jsonwebtoken": "^5.7.0",
     "mongoose": "^4.4.4",
     "morgan": "~1.6.1",
